@@ -1,49 +1,56 @@
+'use strict'
+
 class Thermostat {
-  constructor(temperature = 20, powerSavingMode = true) {
+  constructor (temperature = 20, powerSavingMode = true) {
     this.temperature = temperature
-    this.powerSavingMode = powerSavingMode;
+    this.powerSavingMode = powerSavingMode
   }
 
-  up(setting) {
+  getCurrentTemperature () {
+    return this.temperature
+  }
+
+  up (setting) {
     if (this.powerSavingMode === true) {
-        if (25 < (this.temperature += setting)) {
-          this.temperature = 25
+      if ((this.temperature += setting) > 25) {
+        this.temperature = 25
       } else {
-          this.temperature + setting
-      } 
-    }else {
-        if (32 < (this.temperature += setting)) {
-          this.temperature = 32
-        } else {
-          this.temperature + setting
+        this.temperature + setting
       }
-  }}
-
-  down(setting) {
-    var currentTemp = this.temperature
-
-    if (10 > (currentTemp -= setting)) {
-      this.temperature = 10;
-    } else { 
-      this.temperature -= setting;
+    } else {
+      if ((this.temperature += setting) > 32) {
+        this.temperature = 32
+      } else {
+        this.temperature + setting
+      }
     }
- }
+  }
 
-  ecomode(arg) {
+  down (setting) {
+    let currentTemp = this.temperature
+
+    if ((currentTemp -= setting) < 10) {
+      this.temperature = 10
+    } else {
+      this.temperature -= setting
+    }
+  }
+
+  ecomode (arg) {
     this.powerSavingMode = arg
   }
 
-  reset() {
+  reset () {
     this.temperature = 20
   }
 
-  usage() {
-    if (this.temperature < 18 ) {
-      return "low-usage";
-    } else if (this.temperature <= 25){
-      return "medium-usage";
+  usage () {
+    if (this.temperature < 18) {
+      return 'low-usage'
+    } else if (this.temperature <= 25) {
+      return 'medium-usage'
     } else {
-      return "high-usage"
+      return 'high-usage'
     }
   }
 }
