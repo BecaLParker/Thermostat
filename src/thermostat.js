@@ -26,7 +26,7 @@ class Thermostat {
     }
   }
 
-  down (setting) {
+  down (setting = 1) {
     let currentTemp = this.temperature
 
     if ((currentTemp -= setting) < 10) {

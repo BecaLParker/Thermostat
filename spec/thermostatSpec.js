@@ -43,10 +43,14 @@ describe('Thermostat', () => {
     expect(thermostat.getCurrentTemperature()).toEqual(24)
   })
 
-  it('can decrease the temperature', () => {
-    thermostat.down(1)
+  it('can decrease the temperature(default increment of 1)', () => {
+    thermostat.down()
 
     expect(thermostat.getCurrentTemperature()).toEqual(19)
+
+    thermostat.down(3)
+
+    expect(thermostat.getCurrentTemperature()).toEqual(16)
   })
 
   it('has a minimum temperature of 10 degrees', () => {
