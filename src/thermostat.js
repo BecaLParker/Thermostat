@@ -1,56 +1,68 @@
 'use strict'
 
 class Thermostat {
-  constructor (temperature = 20, powerSavingMode = true) {
-    this.temperature = temperature
-    this.powerSavingMode = powerSavingMode
+  constructor () {
+    this.MINIMUM_TEMPERATURE = 10
+    this.MAX_LIMIT_PSM_ON = 25
+    this.MAX_LIMIT_PSM_OFF = 32
+    this.DEFAULT_TEMP_SETTING = 20
+    this.temperature = this.DEFAULT_TEMP_SETTING
+    this.MEDIUM_ENERGY_USAGE_LIMIT = 18
+    this.HIGH_ENERGY_USAGE_LIMIT = 25
+    this.powerSavingMode = true
   }
 
   getCurrentTemperature () {
     return this.temperature
   }
 
-  up (setting = 1) {
-    if (this.powerSavingMode === true) {
-      if ((this.temperature += setting) > 25) {
-        this.temperature = 25
-      } else {
-        this.temperature + setting
-      }
-    } else {
-      if ((this.temperature += setting) > 32) {
-        this.temperature = 32
-      } else {
-        this.temperature + setting
-      }
+  isMinimumTemperature () {
+    return this.temperature === this.MINIMUM_TEMPERATURE
+  }
+
+  isMaximumTemperature () {
+    if (this.isPowerSavingModeOn() === false) {
+      return this.temperature === this.MAX_LIMIT_PSM_OFF
     }
+    return this.temperature === this.MAX_LIMIT_PSM_ON
   }
 
-  down (setting = 1) {
-    let currentTemp = this.temperature
+  isPowerSavingModeOn () {
+    return this.powerSavingMode === true
+  }
 
-    if ((currentTemp -= setting) < 10) {
-      this.temperature = 10
-    } else {
-      this.temperature -= setting
+  up () {
+    if (this.isMaximumTemperature()) {
+      return
     }
+    this.temperature += 1
   }
 
-  ecomode (arg) {
-    this.powerSavingMode = arg
+  down () {
+    if (this.isMinimumTemperature()) {
+      return
+    }
+    this.temperature -= 1
   }
 
-  reset () {
-    this.temperature = 20
+  switchPowerSavingModeOff () {
+    this.powerSavingMode = false
   }
 
-  usage () {
-    if (this.temperature < 18) {
+  switchPowerSavingModeOn () {
+    this.powerSavingMode = true
+  }
+
+  resetTemperature () {
+    this.temperature = this.DEFAULT_TEMP_SETTING
+  }
+
+  energyUsage () {
+    if (this.temperature < this.MEDIUM_ENERGY_USAGE_LIMIT) {
       return 'low-usage'
-    } else if (this.temperature <= 25) {
+    } else if (this.temperature <= this.HIGH_ENERGY_USAGE_LIMIT) {
       return 'medium-usage'
-    } else {
-      return 'high-usage'
     }
+    return 'high-usage'
   }
 }

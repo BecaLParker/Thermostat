@@ -7,7 +7,7 @@ describe('Thermostat', () => {
   })
 
   it('creates a thermostat with 20 degrees', () => {
-    expect(thermostat.getCurrentTemperature()).toEqual(20)
+    expect(thermostat.isPowerSavingModeOn()).toBe(true)
   })
 
   it('power saving mode is on by default', () => {
@@ -15,78 +15,88 @@ describe('Thermostat', () => {
   })
 
   it('can turn off power saving mode', () => {
-    thermostat.ecomode(false)
+    thermostat.switchPowerSavingModeOff()
 
-    expect(thermostat.powerSavingMode).toEqual(false)
+    expect(thermostat.isPowerSavingModeOn()).toBe(false)
   })
 
   it('can turn on power saving mode', () => {
-    thermostat.ecomode(false)
-    thermostat.ecomode(true)
+    thermostat.switchPowerSavingModeOff()
+    thermostat.switchPowerSavingModeOn()
 
-    expect(thermostat.powerSavingMode).toEqual(true)
+    expect(thermostat.isPowerSavingModeOn()).toBe(true)
   })
 
   it('can reset the temperature to 20', () => {
-    thermostat.up(10)
-    thermostat.reset()
+    thermostat.up()
+    thermostat.resetTemperature()
 
     expect(thermostat.getCurrentTemperature()).toEqual(20)
   })
 
-  it('can increase the temperature (default increment of 1)', () => {
+  it('can increase the temperature + 1', () => {
     thermostat.up()
 
     expect(thermostat.getCurrentTemperature()).toEqual(21)
-    thermostat.up(3)
-
-    expect(thermostat.getCurrentTemperature()).toEqual(24)
   })
 
-  it('can decrease the temperature(default increment of 1)', () => {
+  it('can decrease the temperature - 1)', () => {
     thermostat.down()
 
     expect(thermostat.getCurrentTemperature()).toEqual(19)
-
-    thermostat.down(3)
-
-    expect(thermostat.getCurrentTemperature()).toEqual(16)
   })
 
   it('has a minimum temperature of 10 degrees', () => {
-    thermostat.down(19)
+    for (let i = 0; i < 11; i++) {
+      thermostat.down()
+    }
 
     expect(thermostat.getCurrentTemperature()).toEqual(10)
   })
 
-  it('has a max of 25 when power saving mode is on', () => {
-    thermostat.up(10)
+  describe('when PSM is ON', () => {
+    it('has a max of temperature 25', () => {
+      for (let i = 0; i < 6; i++) {
+        thermostat.up()
+      }
 
-    expect(thermostat.getCurrentTemperature()).toEqual(25)
+      expect(thermostat.getCurrentTemperature()).toEqual(25)
+    })
   })
 
-  it('has a max of 32 when power saving mode is off', () => {
-    thermostat.ecomode(false)
-    thermostat.up(25)
+  describe('when PSM is OFF', () => {
+    it('has a max of temperature 32', () => {
+      thermostat.switchPowerSavingModeOff()
+      for (let i = 0; i < 13; i++) {
+        thermostat.up()
+      }
 
-    expect(thermostat.getCurrentTemperature()).toEqual(32)
+      expect(thermostat.getCurrentTemperature()).toEqual(32)
+    })
   })
 
-  it('can display low usage on the thermostat', () => {
-    thermostat.down(3)
+  describe('displaying energy usage', () => {
+    describe('when temp is below 18', () => {
+      it('is considered LOW-USAGE', () => {
+        thermostat.temperature = 17
+        console.log(thermostat.getCurrentTemperature())
 
-    expect(thermostat.usage()).toEqual('low-usage')
-  })
+        expect(thermostat.energyUsage()).toEqual('low-usage')
+      })
+    })
 
-  it('can display medium usage on the thermostat', () => {
-    thermostat.up(3)
+    describe('when temp is between 18 and 25', () => {
+      it('is considered MEDIUM', () => {
+        expect(thermostat.energyUsage()).toEqual('medium-usage')
+      })
+    })
 
-    expect(thermostat.usage()).toEqual('medium-usage')
-  })
+    describe('when temp is anything else', () => {
+      it('is considered HIGH usage', () => {
+        thermostat.temperature = 28
 
-  it('can display high usage on the thermostat', () => {
-    thermostat.temperature = 28
-
-    expect(thermostat.usage()).toEqual('high-usage')
+        expect(thermostat.energyUsage()).toEqual('high-usage')
+      })
+    })
   })
 })
