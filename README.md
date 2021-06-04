@@ -1,8 +1,13 @@
 # [MakersAcademy JavaScript Thermostat](https://github.com/makersacademy/course/blob/master/thermostat_es6/thermostat_logic.md )
+:cold_face: :hot_face:
 
 
 ## Testing
-Test driven with jasmine
+Test-driven with jasmine. 
+Clone my repo to your local, cd into the cloned directory, open SpecRunner.html
+
+## Linter
+Linted with [ESLint](https://eslint.org/) 
 
 ## Functionality
 Specification:
@@ -17,6 +22,9 @@ Specification:
 * You can reset the temperature to 20 with a reset function
 * You can ask about the thermostat's current energy usage: < 18 is `low-usage`, <= 25 is `medium-usage`, anything else is `high-usage`.
 * (In the challenges where we add an interface, low-usage will be indicated with green, medium-usage indicated with black, high-usage indicated with red.)
+
+## Next steps
+[User interface](https://github.com/makersacademy/course/blob/master/thermostat_es6/interface.md) (HTML/CSS)
 
 ## Credits
 Pair-programmed the buisness logic with [Dewald Viljoen](https://github.com/Dev-ops-true#dewald-viljoen-dev). 
