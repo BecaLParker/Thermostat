@@ -2,9 +2,6 @@
 
 class Thermostat {
   constructor (temperature = 20, powerSavingMode = true) {
-    this.MINIMUM_TEMPERATURE = 10
-    this.ECO_MAXIMUM_TEMPERATURE = 25
-    this.MAXIMUM_TEMPERATURE = 32
     this.temperature = temperature
     this.powerSavingMode = powerSavingMode
   }
@@ -13,29 +10,16 @@ class Thermostat {
     return this.temperature
   }
 
-  isMinimumTemperature() {
-    return this.temperature === this.MINIMUM_TEMPERATURE;
-  }
-
-  isGreaterThanEcoMaximumTemperature(x) {
-    return x > this.ECO_MAXIMUM_TEMPERATURE
-  }
-
-  isGreaterThanMaximumTemperature(x) {
-    return x > this.MAXIMUM_TEMPERATURE
-  }
-
   up (setting = 1) {
-    let res = this.getCurrentTemperature + setting
     if (this.powerSavingMode === true) {
-      if (isGreaterThanEcoMaximumTemperature(res)) {
-        this.temperature = this.ECO_MAXIMUM_TEMPERATURE
+      if ((this.temperature += setting) > 25) {
+        this.temperature = 25
       } else {
         this.temperature + setting
       }
     } else {
-      if ((this.temperature += setting) > this.MAXIMUM_TEMPERATURE) {
-        this.temperature = this.MAXIMUM_TEMPERATURE
+      if ((this.temperature += setting) > 32) {
+        this.temperature = 32
       } else {
         this.temperature + setting
       }
@@ -43,12 +27,13 @@ class Thermostat {
   }
 
   down (setting = 1) {
+    let currentTemp = this.temperature
 
-    if (this.isMinimumTemperature()) {
-      return;
-    } 
-    for (let i = 0; i < setting; i++) {
-      this.temperature -= setting;
+    if ((currentTemp -= setting) < 10) {
+      this.temperature = 10
+    } else {
+      this.temperature -= setting
+    }
   }
 
   ecomode (arg) {
