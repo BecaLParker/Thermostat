@@ -54,7 +54,7 @@ describe('Thermostat', () => {
   })
 
   it('has a minimum temperature of 10 degrees', () => {
-    thermostat.down(19)
+    thermostat.down(600)
 
     expect(thermostat.getCurrentTemperature()).toEqual(10)
   })
