@@ -6,6 +6,11 @@
 Test-driven with jasmine. 
 Clone my repo to your local, cd into the cloned directory, open SpecRunner.html
 
+## UI (HTML)
+open index.html
+(note: CSS is not implemented yet)
+
+
 ## Linter
 Linted with [ESLint](https://eslint.org/) 
 
@@ -24,7 +29,7 @@ Specification:
 * (In the challenges where we add an interface, low-usage will be indicated with green, medium-usage indicated with black, high-usage indicated with red.)
 
 ## Next steps
-[User interface](https://github.com/makersacademy/course/blob/master/thermostat_es6/interface.md) (HTML/CSS)
+[DOM](https://github.com/makersacademy/course/blob/master/thermostat_es6/dom.md)
 
 ## Credits
 Pair-programmed the business logic with [Dewald Viljoen](https://github.com/Dev-ops-true#dewald-viljoen-dev). 
