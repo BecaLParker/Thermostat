@@ -14,4 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     thermostat.down();
     updateTemperature();
   })
+
+  document.querySelector('#temperature-reset').addEventListener('click', () => {
+    thermostat.resetTemperature();
+    updateTemperature();
+  })
 })
