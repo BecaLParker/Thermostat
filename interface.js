@@ -19,4 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
     thermostat.resetTemperature();
     updateTemperature();
   })
+
+  document.querySelector('#power-saving-on').addEventListener('click', () => {
+    thermostat.switchPowerSavingModeOn();
+    document.querySelector('#power-saving-status').innerText = 'on';
+    updateTemperature();
+  })
+
+  document.querySelector('#power-saving-off').addEventListener('click', () => {
+    thermostat.switchPowerSavingModeOff();
+    document.querySelector('#power-saving-status').innerText = 'off';
+    updateTemperature();
+  })
 })
