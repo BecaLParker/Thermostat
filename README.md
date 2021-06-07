@@ -27,5 +27,5 @@ Specification:
 [User interface](https://github.com/makersacademy/course/blob/master/thermostat_es6/interface.md) (HTML/CSS)
 
 ## Credits
-Pair-programmed the buisness logic with [Dewald Viljoen](https://github.com/Dev-ops-true#dewald-viljoen-dev). 
+Pair-programmed the business logic with [Dewald Viljoen](https://github.com/Dev-ops-true#dewald-viljoen-dev). 
 Refactored using [walkthrough](https://github.com/makersacademy/course/blob/master/thermostat_es6/walkthroughs/thermostat_logic.md)
