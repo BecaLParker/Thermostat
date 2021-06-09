@@ -14,6 +14,9 @@ open index.html
 ## Linter
 Linted with [ESLint](https://eslint.org/) 
 
+## External API
+[OpenWeather](https://openweathermap.org/)
+
 ## Functionality
 Specification:
 
