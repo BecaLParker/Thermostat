@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json()
     })
     .then((data) => {
-      document.querySelector('#current-weather').innerText = data.main.temp;
+      document.querySelector('#current-weather').innerText = Math.floor(data.main.temp);
     });
-    
+
   const updateTemperature = () => {
     document.querySelector('#temperature').innerText = thermostat.temperature;
     document.querySelector('#temperature').className = thermostat.energyUsage();
