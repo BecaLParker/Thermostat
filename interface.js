@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+  fetch('http://api.openweathermap.org/data/2.5/weather?q=Cambridge,uk&appid=722da2eaa18da16838a06a3f8d9dbe21&units=metric')
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      document.querySelector('#current-weather').innerText = data.main.temp;
+    });
+    
   const updateTemperature = () => {
     document.querySelector('#temperature').innerText = thermostat.temperature;
     document.querySelector('#temperature').className = thermostat.energyUsage();
