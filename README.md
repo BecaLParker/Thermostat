@@ -1,5 +1,5 @@
 # [MakersAcademy JavaScript Thermostat](https://github.com/makersacademy/course/blob/master/thermostat_es6/thermostat_logic.md )
-:cold_face: :hot_face:
+![Screenshot](https://github.com/BecaLParker/Thermostat/blob/main/ThermostatScreenshot%202021-06-09.png)
 
 
 ## Testing
@@ -8,10 +8,7 @@ Clone my repo to your local, cd into the cloned directory, open SpecRunner.html
 
 ## UI (HTML/CSS)
 open index.html
-(basic CSS for displaying colours correlating to energy usage)
-![Screenshot](./ThermostatScreenshot 2021-06-09.png)
-
-
+ 
 ## Linter
 Linted with [ESLint](https://eslint.org/) 
 
