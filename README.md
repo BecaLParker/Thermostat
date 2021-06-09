@@ -9,6 +9,7 @@ Clone my repo to your local, cd into the cloned directory, open SpecRunner.html
 ## UI (HTML/CSS)
 open index.html
 (basic CSS for displaying colours correlating to energy usage)
+![Screenshot](./ThermostatScreenshot 2021-06-09.png)
 
 
 ## Linter
@@ -34,7 +35,7 @@ Specification:
 * You can enter a different UK city to update the weather display.
 
 ## Next steps
-[Styling](https://github.com/makersacademy/course/blob/master/thermostat_es6/styling.md)
+[Saving state](https://github.com/makersacademy/course/blob/master/thermostat_es6/saving_state.md)
 
 ## Credits
 Pair-programmed the business logic with [Dewald Viljoen](https://github.com/Dev-ops-true#dewald-viljoen-dev). 

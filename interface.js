@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const updateTemperature = () => {
-    document.querySelector("#temperature").innerText = thermostat.temperature;
+    document.querySelector("#temperature").innerText = `${thermostat.temperature} °C`;
     document.querySelector("#temperature").className = thermostat.energyUsage();
   };
   const thermostat = new Thermostat();
@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelector("#power-saving-on").addEventListener("click", () => {
     thermostat.switchPowerSavingModeOn();
-    document.querySelector("#power-saving-status").innerText = "on";
+    document.querySelector("#power-saving-status").innerText = "ON";
     updateTemperature();
   });
 
   document.querySelector("#power-saving-off").addEventListener("click", () => {
     thermostat.switchPowerSavingModeOff();
-    document.querySelector("#power-saving-status").innerText = "off";
+    document.querySelector("#power-saving-status").innerText = "OFF";
     updateTemperature();
   });
 });
